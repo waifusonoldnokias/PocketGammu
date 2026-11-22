@@ -10,9 +10,3 @@ captures/
 *.apk
 *.aab
 tools/node_modules/
-
-# Signing keys and their passwords never go in the repository.
-keystore.properties
-*.jks
-*.keystore
-*.p12

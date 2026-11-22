@@ -20,7 +20,7 @@ From a terminal:
 ```
 ./gradlew :app:assembleDebug
 ./gradlew :core:nokia:test :core:gammu:testDebugUnitTest :app:testDebugUnitTest
-./gradlew :app:assembleRelease      # minified; signed with the release key if keystore.properties exists, else the debug key
+./gradlew :app:assembleRelease      # minified, signed with the debug key for sideloading
 ```
 
 `AppSmokeTest` (Robolectric) launches the real app and opens every screen, panel and

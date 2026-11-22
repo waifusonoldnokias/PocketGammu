@@ -1,5 +1,3 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -20,35 +18,13 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
     }
 
-    // Release signing: keystore.properties in the project root (never committed), or the
-    // POCKETGAMMU_KEYSTORE / _STORE_PASSWORD / _KEY_ALIAS / _KEY_PASSWORD environment
-    // variables (for CI). Without either, release builds fall back to the debug key so
-    // anyone can build and sideload their own copy.
-    val keyProps = Properties().apply {
-        rootProject.file("keystore.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
-        System.getenv("POCKETGAMMU_KEYSTORE")?.let {
-            setProperty("storeFile", it)
-            setProperty("storePassword", System.getenv("POCKETGAMMU_STORE_PASSWORD"))
-            setProperty("keyAlias", System.getenv("POCKETGAMMU_KEY_ALIAS") ?: "pocketgammu")
-            setProperty("keyPassword", System.getenv("POCKETGAMMU_KEY_PASSWORD") ?: System.getenv("POCKETGAMMU_STORE_PASSWORD"))
-        }
-    }
-    val hasReleaseKey = keyProps.getProperty("storeFile") != null
-    signingConfigs {
-        if (hasReleaseKey) create("release") {
-            storeFile = file(keyProps.getProperty("storeFile"))
-            storePassword = keyProps.getProperty("storePassword")
-            keyAlias = keyProps.getProperty("keyAlias")
-            keyPassword = keyProps.getProperty("keyPassword")
-        }
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName(if (hasReleaseKey) "release" else "debug")
+            // Signed with the development (debug) key for sideloading.
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
