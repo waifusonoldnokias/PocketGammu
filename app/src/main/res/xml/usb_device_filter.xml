@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cables and dongles PocketGammu knows about (vendor/product IDs are decimal). -->
+<resources>
+    <usb-device vendor-id="1659" product-id="8963" />   <!-- 067B:2303 Prolific PL2303 (DKU-5 / CA-42) -->
+    <usb-device vendor-id="1057" />                     <!-- 0421:* Nokia (DKU-2) -->
+    <usb-device vendor-id="1647" product-id="16896" />  <!-- 066F:4200 SigmaTel STIr4200 -->
+    <usb-device vendor-id="1647" product-id="16912" />  <!-- 066F:4210 SigmaTel STIr4210 -->
+    <usb-device vendor-id="1647" product-id="16928" />  <!-- 066F:4220 SigmaTel STIr4220 -->
+    <usb-device vendor-id="1647" product-id="16662" />  <!-- 066F:4116 SigmaTel STIr4116 -->
+    <usb-device vendor-id="1027" product-id="24577" />  <!-- 0403:6001 FTDI FT232 -->
+    <usb-device vendor-id="6790" product-id="29987" />  <!-- 1A86:7523 CH340 -->
+    <usb-device vendor-id="4292" product-id="60000" />  <!-- 10C4:EA60 CP210x -->
+</resources>
