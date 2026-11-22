@@ -1,9 +1,0 @@
-{
-  "name": "pocketgammu-tools",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "colors": "node gen-colors.mjs > ../core/designsystem/src/main/kotlin/com/pocketgammu/core/designsystem/theme/GeneratedSchemes.kt"
-  },
-  "dependencies": { "@material/material-color-utilities": "0.3.0" }
-}

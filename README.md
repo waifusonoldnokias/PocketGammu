@@ -83,10 +83,11 @@ same families should work but haven't been tried yet. Reports are welcome in Iss
 Get the APK from [Releases](../../releases) and install it on your phone (allow installs from
 unknown sources when asked). PocketGammu isn't on the Play Store.
 
-## Building
+## Source code
 
-Open the project in Android Studio, or run `./gradlew :app:assembleRelease`. See
-[DEVELOPMENT.md](DEVELOPMENT.md) for the module layout, tests and conventions.
+The full source code for each version is attached to its release as a .zip. Open it in
+Android Studio, or build it with `./gradlew :app:assembleRelease`. DEVELOPMENT.md inside
+the zip covers the module layout, tests and conventions.
 
 ## Credits and license
 
