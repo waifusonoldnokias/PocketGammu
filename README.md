@@ -14,8 +14,7 @@
 
 <p align="center"><b>A portable utility based on "Gammu" (Gammu All Mobile Management Utilities)<br>for tinkering with old Nokia phones on the go!</b></p>
 
-PocketGammu is an experimental / proof-of-concept Android app. Plug an old Nokia into your
-Android phone with a USB OTG cable or an infrared dongle, then make logos, ringtones and
+PocketGammu is an experimental / proof-of-concept Android app. Plug an old Nokia into your Android phone through a USB-to-serial converter and a Nokia serial cable or an infrared dongle, then make logos, ringtones and
 picture messages and send them to it, or manage the files on it.
 
 ## Features
