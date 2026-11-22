@@ -7,7 +7,7 @@
 
 <p align="center">
   <img src="docs/screenshots/home.png" alt="Home screen with a Nokia 3510i connected" width="200">
-  <img src="docs/screenshots/logo.png" alt="Logo editor" width="200">
+  <img src="docs/screenshots/logo.png" alt="Logo editor with a 96×65 startup logo" width="200">
   <img src="docs/screenshots/ringtone.png" alt="Ringtone editor" width="200">
   <img src="docs/screenshots/files.png" alt="File manager" width="200">
 </p>

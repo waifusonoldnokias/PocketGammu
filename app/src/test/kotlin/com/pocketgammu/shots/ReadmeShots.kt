@@ -8,10 +8,8 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTouchInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.pocketgammu.MainActivity
 import com.pocketgammu.PocketGammuApplication
@@ -52,50 +50,31 @@ class ReadmeShots {
         Thread.sleep(1500)
     }
 
-    /** 5×7 pixel font, enough letters for "PocketGammu". */
-    private val glyphs = mapOf(
-        'P' to "11110 10001 10001 11110 10000 10000 10000", 'o' to "00000 00000 01110 10001 10001 10001 01110",
-        'c' to "00000 00000 01110 10000 10000 10001 01110", 'k' to "10000 10000 10010 10100 11000 10100 10010",
-        'e' to "00000 00000 01110 10001 11111 10000 01110", 't' to "01000 01000 11100 01000 01000 01001 00110",
-        'G' to "01110 10001 10000 10111 10001 10001 01111", 'a' to "00000 00000 01110 00001 01111 10001 01111",
-        'm' to "00000 00000 11010 10101 10101 10001 10001", 'u' to "00000 00000 10001 10001 10001 10011 01101",
-    )
-
-    /** Paints [word] with the pencil, one horizontal run of pixels per stroke, like a person would. */
-    private fun drawWord(word: String, x0: Int, y0: Int) {
-        val box = rule.onNodeWithTag("logoCanvas").fetchSemanticsNode().boundsInRoot
-        val margin = 16f * rule.density.density
-        val cell = minOf((box.width - 2 * margin) / 72, (box.height - 2 * margin) / 14)
-        val origin = androidx.compose.ui.geometry.Offset(box.center.x - 36 * cell, box.center.y - 7 * cell)
-        fun at(x: Int, y: Int) = origin + androidx.compose.ui.geometry.Offset((x + 0.5f) * cell, (y + 0.5f) * cell)
-        word.forEachIndexed { i, ch ->
-            val rows = glyphs.getValue(ch).split(' ')
-            rows.forEachIndexed { y, row ->
-                var x = 0
-                while (x < row.length) {
-                    if (row[x] == '1') {
-                        var end = x
-                        while (end + 1 < row.length && row[end + 1] == '1') end++
-                        val gx = x0 + i * 6
-                        rule.onRoot().performTouchInput {
-                            down(at(gx + x, y0 + y))
-                            for (k in x + 1..end) moveTo(at(gx + k, y0 + y))
-                            up()
-                        }
-                        rule.waitForIdle()
-                        x = end + 1
-                    } else x++
-                }
-            }
+    /**
+     * Loads test resource readme/startup-logo.png (96×65, one bit) into a "Startup logo
+     * (7110 class)" canvas through the real Import image flow: the photo picker is answered
+     * with the file, and Threshold keeps the pixels exactly as drawn.
+     */
+    private fun importStartupLogo() {
+        click("Operator logo"); click("Startup logo (7110 class)")
+        val file = File.createTempFile("startup-logo", ".png").apply {
+            outputStream().use { out -> ReadmeShots::class.java.getResourceAsStream("/readme/startup-logo.png")!!.copyTo(out) }
         }
-        settle()
+        click("Image"); click("Import image")
+        val activity = org.robolectric.Shadows.shadowOf(rule.activity)
+        val request = activity.nextStartedActivityForResult
+        activity.receiveResult(request.intent, android.app.Activity.RESULT_OK, android.content.Intent().setData(android.net.Uri.fromFile(file)))
+        repeat(30) { Thread.sleep(100); settle() }
+        click("Floyd–Steinberg"); click("Threshold")
+        click("Add layer")
+        click("Draw"); desc("Pencil")
     }
+
 
     @Test fun editorsThenHome() {
         theme()
         click("Logo")
-        click("Draw")
-        drawWord("PocketGammu", x0 = 3, y0 = 3)
+        importStartupLogo()
         shot("logo")
 
         click("Ringtone")
