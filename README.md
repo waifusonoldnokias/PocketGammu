@@ -55,7 +55,7 @@ picture messages and send them to it, or manage the files on it.
 ### Look and feel
 
 - Material 3 Expressive design with light and dark modes
-- Colour schemes: System (Material You), Teto, Miku, Neru, Gumi and Rei
+- Material You adaptive color scheme + other cool built-in themes!
 
 ## Tested phones
 
