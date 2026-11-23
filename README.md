@@ -6,10 +6,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/home.png" alt="Home screen with a Nokia 3510i connected" width="200">
-  <img src="docs/screenshots/logo.png" alt="Logo editor with a 96×65 startup logo" width="200">
-  <img src="docs/screenshots/ringtone.png" alt="Ringtone editor" width="200">
-  <img src="docs/screenshots/files.png" alt="File manager" width="200">
+  <img src="docs/screenshots/home.png" alt="Home screen with a Nokia 3510i connected" width="150">
+  <img src="docs/screenshots/logo.png" alt="Logo editor with a 96×65 startup logo" width="150">
+  <img src="docs/screenshots/ringtone.png" alt="Ringtone editor" width="150">
+  <img src="docs/screenshots/files.png" alt="File manager" width="150">
 </p>
 
 <p align="center"><b>A portable utility based on "Gammu" (Gammu All Mobile Management Utilities)<br>for tinkering with old Nokia phones on the go!</b></p>
@@ -58,19 +58,15 @@ picture messages and send them to it, or manage the files on it.
 
 ## Tested phones
 
-Tested by the developer: Nokia 6150 (infrared), 6510, 3510i and 3200. Other phones in the
-same families should work but haven't been tried yet. Reports are welcome in Issues.
+Nokia 6150 (ir FBUS), 7110 (irDA), 6310i (irDA), 6510 (irDA), 3510i (serial), 3200 (irDA), and 6100 (irDA). Other phones in the same families should work but haven't been tried yet. Reports are welcome in Issues.
 
 ## Limitations
 
-- **Limited dongle support.** The only infrared dongle that works is the SigmaTel STIr4200.
-  KingSun KS-959 dongles aren't supported, and newer SigmaTel chips (STIr4210, 4220,
-  4116) need a firmware upload that isn't implemented.
+- **Limited dongle support.** The only infrared dongle that works for now are SigmaTel STIr4200-based dongles.
 - **Nokia DCT-3, DCT-4 and Series 40 only.** There are no AT-command or M-Bus connections,
   so other brands and AT-only phones won't work.
 - **No contacts, messages, calendar or backups.** The app focuses on logos, ringtones,
   picture messages and files.
-- **The file manager needs a Series 40 phone.** Older phones have no file system to browse.
 - **Picture messages by cable** only work on the older N6110 family (3310, 3330, 3410,
   6150, 8210) and haven't been tested on a real phone yet. Send them by SMS to other phones.
 - **SMS sending** needs a SIM in your Android phone, costs normal text rates, and a large
